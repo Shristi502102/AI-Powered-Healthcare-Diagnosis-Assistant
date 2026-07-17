@@ -7,10 +7,13 @@ A machine-learning web application that accepts patient symptoms and returns the
 ## Screenshots
 
 **Symptom intake form**
-![Symptom intake form](image/Screenshot%202026-07-17%20104914.jpg)
+![Symptom intake form](static/screenshots/index.png)
 
-**Prediction results**
-![Prediction results](image/Screenshot%202026-07-17%20105243.jpg)
+**Prediction results — risk gauge, Top-3 conditions, precautions**
+![Prediction results](static/screenshots/prediction.png)
+
+**History & stats**
+![History page](static/screenshots/history.png)
 
 ## Model & accuracy
 
@@ -56,10 +59,6 @@ AI_Healthcare_Diagnosis_Assistant/
 │   ├── symptom_encoder.pkl
 │   └── scaler.pkl
 │
-├── image/
-│   ├── Screenshot 2026-07-17 104914.jpg
-│   └── Screenshot 2026-07-17 105243.jpg
-│
 ├── images/
 │
 ├── templates/
@@ -93,6 +92,25 @@ python app.py            # launch web app -> http://127.0.0.1:5000
 
 `predict.py` can also run standalone (`python predict.py`) to test the pipeline on a sample patient and print the JSON result.
 
+## Deploying to Railway
+
+This project is ready for Railway deployment with the included `Procfile`.
+
+1. Push the repository to GitHub.
+2. Create a new Railway project and connect your repo.
+3. Railway will install dependencies from `requirements.txt` and use `Procfile` to start the web process.
+4. The app is served with Gunicorn on Railway using the auto-assigned `$PORT`.
+
+Important note: `health_assistant.db` is stored locally in the container filesystem, so history will not persist across Railway redeploys or restarts.
+
+Optional local deployment with Railway's CLI:
+
+```bash
+railway up
+```
+
+If you prefer the web UI, choose "Deploy from Repository" and select this project.
+
 ## Web application
 
 - **/** — patient intake form with a filterable symptom chip picker (135 symptoms)
@@ -112,22 +130,6 @@ python app.py            # launch web app -> http://127.0.0.1:5000
 
 If you're wondering why the project doesn't call Kaggle's API directly: `kagglehub.dataset_download(...)` requires an authenticated Kaggle account (an API token), which this environment can't hold or supply — the call fails with a 403 regardless of network access. Uploading the CSV directly (as was done here) sidesteps that entirely and is the simplest path if you want to swap in a different Kaggle dataset later.
 
-## Deploying on Railway
-
-The project ships ready for this — `Procfile`, `gunicorn` in `requirements.txt`, and `$PORT` binding are already in place.
-
-1. **Push this project to a GitHub repo** (skip if it's already there).
-2. **Go to [railway.app](https://railway.app) → New Project → Deploy from GitHub repo** and pick the repo.
-3. Railway auto-detects Python via Nixpacks and installs `requirements.txt`. Nothing to configure — it reads the `Procfile` (`web: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120`) as the start command automatically.
-4. Once the build finishes, open **Settings → Networking → Generate Domain** to get a public `*.up.railway.app` URL.
-5. **Persistence caveat:** Railway's filesystem is ephemeral — every redeploy wipes `health_assistant.db`, so prediction history won't survive a redeploy by default. To fix that:
-   - Add a **Volume** in the Railway service (Settings → Volumes), mount it at `/data`.
-   - Add an environment variable `DATABASE_PATH=/data/health_assistant.db` (Settings → Variables).
-   - `database.py` already reads this variable, so no code changes needed.
-6. The trained model (`model/*.pkl`) and processed dataset (`dataset/*.csv`) are already in the repo, so the app works immediately — no need to run `train_model.py` on Railway (the 190MB raw CSV isn't in the repo, so retraining there won't work without uploading it separately).
-
-If the deploy log shows the build succeeding but the app never comes up, the two most common causes are a missing `gunicorn` in `requirements.txt` or the app binding to a hardcoded port instead of `$PORT` — both are already handled here, but worth checking first if you fork/modify this.
-
 ## Extending (optional features from the original sheet)
 
-PDF reports (swap the text report for `reportlab`), speech-to-text symptom input (Web Speech API in `main.js`), an LLM chatbot for general health questions, multi-language UI, and retraining on the full 773-disease label space (set `TOP_N_DISEASES = 773` in `train_model.py`, expect ~75-85% accuracy per the rationale above).
+PDF reports (swap the text report for `reportlab`), speech-to-text symptom input (Web Speech API in `main.js`), an LLM chatbot for general health questions, multi-language UI, retraining on the full 773-disease label space (set `TOP_N_DISEASES = 773` in `train_model.py`, expect ~75-85% accuracy per the rationale above), and deployment to Render/Railway (add `gunicorn` and a `Procfile`: `web: gunicorn app:app`).
