@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History — MediAssist</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="{{ url_for('index') }}">
+        <span class="brand-mark">+</span>
+        <span>
+          <strong>MediAssist</strong>
+          <small>AI Healthcare Diagnosis Assistant</small>
+        </span>
+      </a>
+      <nav>
+        <a href="{{ url_for('index') }}">Check symptoms</a>
+        <a href="{{ url_for('history') }}">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="disclaimer-bar">
+    Educational tool — results are likely conditions, <em>not</em> a medical diagnosis.
+    Always consult a qualified healthcare professional.
+  </div>
+
+  <main class="wrap">
+
+
+<section class="intro">
+  <h1>Prediction history</h1>
+  <p>Previous symptom checks stored in the local database.</p>
+</section>
+
+<div class="stats-row">
+  <div class="card stat">
+    <span class="stat-num">{{ stats.total }}</span>
+    <span class="stat-label">Total checks</span>
+  </div>
+  <div class="card stat">
+    <span class="stat-num">{{ stats.high_risk }}</span>
+    <span class="stat-label">High-risk cases</span>
+  </div>
+  <div class="card stat stat-wide">
+    <span class="stat-label">Most common results</span>
+    <span class="stat-list">
+      {% for d, c in stats.common %}{{ d }} ({{ c }}){% if not loop.last %} · {% endif %}{% endfor %}
+      {% if not stats.common %}—{% endif %}
+    </span>
+  </div>
+</div>
+
+{% if history %}
+<div class="card table-card">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Date</th><th>Patient</th><th>Symptoms</th>
+        <th>Top result</th><th>Risk</th><th>Specialist</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in history %}
+      <tr class="{% if h.emergency %}row-emergency{% endif %}">
+        <td>{{ h.id }}</td>
+        <td>{{ h.created_at }}</td>
+        <td>{{ h.name }}<br><small>{{ h.age }} yrs, {{ h.gender }}</small></td>
+        <td class="cell-symptoms">
+          {% for s in h.symptoms[:4] %}{{ s|pretty }}{% if not loop.last %}, {% endif %}{% endfor %}
+          {% if h.symptoms|length > 4 %} +{{ h.symptoms|length - 4 }} more{% endif %}
+        </td>
+        <td><strong>{{ h.top_disease }}</strong> ({{ h.probability }}%)</td>
+        <td><span class="badge badge-{{ h.risk_level|lower }}">{{ h.risk_level }}</span></td>
+        <td>{{ h.specialist }}</td>
+        <td><a class="link" href="{{ url_for('report', record_id=h.id) }}">Report</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card empty-state">
+  <p>No checks yet. Run your first symptom check to see it here.</p>
+  <a class="btn-primary" href="{{ url_for('index') }}">Check symptoms</a>
+</div>
+{% endif %}
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      MediAssist · Machine-learning demo project · Not for clinical use ·
+      In an emergency, contact local emergency services immediately.
+    </div>
+  </footer>
+</body>
+</html>
