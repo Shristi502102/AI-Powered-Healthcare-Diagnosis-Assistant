@@ -7,13 +7,10 @@ A machine-learning web application that accepts patient symptoms and returns the
 ## Screenshots
 
 **Symptom intake form**
-![Symptom intake form](static/screenshots/index.png)
+![Symptom intake form](image/Screenshot%202026-07-17%20104914.jpg)
 
-**Prediction results — risk gauge, Top-3 conditions, precautions**
-![Prediction results](static/screenshots/prediction.png)
-
-**History & stats**
-![History page](static/screenshots/history.png)
+**Prediction results**
+![Prediction results](image/Screenshot%202026-07-17%20105243.jpg)
 
 ## Model & accuracy
 
@@ -58,6 +55,10 @@ AI_Healthcare_Diagnosis_Assistant/
 │   ├── disease_model.pkl
 │   ├── symptom_encoder.pkl
 │   └── scaler.pkl
+│
+├── image/
+│   ├── Screenshot 2026-07-17 104914.jpg
+│   └── Screenshot 2026-07-17 105243.jpg
 │
 ├── images/
 │
