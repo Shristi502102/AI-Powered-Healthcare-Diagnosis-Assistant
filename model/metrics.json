@@ -1,0 +1,11 @@
+{
+  "accuracy": 0.9573,
+  "precision": 0.9584,
+  "recall": 0.9573,
+  "f1_score": 0.9571,
+  "cv_accuracy_mean": 0.963,
+  "n_samples": 3750,
+  "n_diseases": 25,
+  "n_symptoms": 135,
+  "roc_auc_ovr": 0.9996
+}
