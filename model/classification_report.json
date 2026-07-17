@@ -1,0 +1,165 @@
+{
+  "Acute Bronchitis": {
+    "precision": 0.9642857142857143,
+    "recall": 0.9,
+    "f1-score": 0.9310344827586207,
+    "support": 30.0
+  },
+  "Arthritis Of The Hip": {
+    "precision": 1.0,
+    "recall": 0.9666666666666667,
+    "f1-score": 0.9830508474576272,
+    "support": 30.0
+  },
+  "Bursitis": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Complex Regional Pain Syndrome": {
+    "precision": 0.8484848484848485,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.8888888888888888,
+    "support": 30.0
+  },
+  "Conjunctivitis Due To Allergy": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Cystitis": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Diverticulitis": {
+    "precision": 1.0,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.9655172413793104,
+    "support": 30.0
+  },
+  "Esophagitis": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Fungal Infection Of The Hair": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Gastrointestinal Hemorrhage": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Gout": {
+    "precision": 1.0,
+    "recall": 0.9666666666666667,
+    "f1-score": 0.9830508474576272,
+    "support": 30.0
+  },
+  "Hypoglycemia": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Infectious Gastroenteritis": {
+    "precision": 0.967741935483871,
+    "recall": 1.0,
+    "f1-score": 0.9836065573770492,
+    "support": 30.0
+  },
+  "Injury To The Arm": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Liver Disease": {
+    "precision": 0.967741935483871,
+    "recall": 1.0,
+    "f1-score": 0.9836065573770492,
+    "support": 30.0
+  },
+  "Marijuana Abuse": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 30.0
+  },
+  "Nose Disorder": {
+    "precision": 0.9354838709677419,
+    "recall": 0.9666666666666667,
+    "f1-score": 0.9508196721311475,
+    "support": 30.0
+  },
+  "Peripheral Nerve Disorder": {
+    "precision": 0.9629629629629629,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.9122807017543859,
+    "support": 30.0
+  },
+  "Pneumonia": {
+    "precision": 0.9,
+    "recall": 0.9,
+    "f1-score": 0.9,
+    "support": 30.0
+  },
+  "Spondylosis": {
+    "precision": 0.9642857142857143,
+    "recall": 0.9,
+    "f1-score": 0.9310344827586207,
+    "support": 30.0
+  },
+  "Spontaneous Abortion": {
+    "precision": 0.9629629629629629,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.9122807017543859,
+    "support": 30.0
+  },
+  "Sprain Or Strain": {
+    "precision": 0.8823529411764706,
+    "recall": 1.0,
+    "f1-score": 0.9375,
+    "support": 30.0
+  },
+  "Strep Throat": {
+    "precision": 0.9032258064516129,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.9180327868852459,
+    "support": 30.0
+  },
+  "Vaginal Cyst": {
+    "precision": 0.9032258064516129,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.9180327868852459,
+    "support": 30.0
+  },
+  "Vulvodynia": {
+    "precision": 0.9375,
+    "recall": 1.0,
+    "f1-score": 0.967741935483871,
+    "support": 30.0
+  },
+  "accuracy": 0.9626666666666667,
+  "macro avg": {
+    "precision": 0.9640101799598954,
+    "recall": 0.9626666666666668,
+    "f1-score": 0.9626591396139631,
+    "support": 750.0
+  },
+  "weighted avg": {
+    "precision": 0.9640101799598952,
+    "recall": 0.9626666666666667,
+    "f1-score": 0.9626591396139629,
+    "support": 750.0
+  }
+}
