@@ -36,9 +36,9 @@
     "support": 30.0
   },
   "Diverticulitis": {
-    "precision": 1.0,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.9655172413793104,
+    "precision": 0.9642857142857143,
+    "recall": 0.9,
+    "f1-score": 0.9310344827586207,
     "support": 30.0
   },
   "Esophagitis": {
@@ -61,8 +61,8 @@
   },
   "Gout": {
     "precision": 1.0,
-    "recall": 0.9666666666666667,
-    "f1-score": 0.9830508474576272,
+    "recall": 1.0,
+    "f1-score": 1.0,
     "support": 30.0
   },
   "Hypoglycemia": {
@@ -72,9 +72,9 @@
     "support": 30.0
   },
   "Infectious Gastroenteritis": {
-    "precision": 0.967741935483871,
-    "recall": 1.0,
-    "f1-score": 0.9836065573770492,
+    "precision": 0.9354838709677419,
+    "recall": 0.9666666666666667,
+    "f1-score": 0.9508196721311475,
     "support": 30.0
   },
   "Injury To The Arm": {
@@ -108,21 +108,21 @@
     "support": 30.0
   },
   "Pneumonia": {
-    "precision": 0.9,
-    "recall": 0.9,
-    "f1-score": 0.9,
+    "precision": 0.9032258064516129,
+    "recall": 0.9333333333333333,
+    "f1-score": 0.9180327868852459,
     "support": 30.0
   },
   "Spondylosis": {
-    "precision": 0.9642857142857143,
-    "recall": 0.9,
-    "f1-score": 0.9310344827586207,
-    "support": 30.0
-  },
-  "Spontaneous Abortion": {
     "precision": 0.9629629629629629,
     "recall": 0.8666666666666667,
     "f1-score": 0.9122807017543859,
+    "support": 30.0
+  },
+  "Spontaneous Abortion": {
+    "precision": 0.8928571428571429,
+    "recall": 0.8333333333333334,
+    "f1-score": 0.8620689655172413,
     "support": 30.0
   },
   "Sprain Or Strain": {
@@ -132,34 +132,34 @@
     "support": 30.0
   },
   "Strep Throat": {
-    "precision": 0.9032258064516129,
+    "precision": 0.9333333333333333,
     "recall": 0.9333333333333333,
-    "f1-score": 0.9180327868852459,
+    "f1-score": 0.9333333333333333,
     "support": 30.0
   },
   "Vaginal Cyst": {
-    "precision": 0.9032258064516129,
-    "recall": 0.9333333333333333,
-    "f1-score": 0.9180327868852459,
+    "precision": 0.896551724137931,
+    "recall": 0.8666666666666667,
+    "f1-score": 0.8813559322033898,
     "support": 30.0
   },
   "Vulvodynia": {
-    "precision": 0.9375,
+    "precision": 0.9090909090909091,
     "recall": 1.0,
-    "f1-score": 0.967741935483871,
+    "f1-score": 0.9523809523809523,
     "support": 30.0
   },
-  "accuracy": 0.9626666666666667,
+  "accuracy": 0.9573333333333334,
   "macro avg": {
-    "precision": 0.9640101799598954,
-    "recall": 0.9626666666666668,
-    "f1-score": 0.9626591396139631,
+    "precision": 0.9583641494979583,
+    "recall": 0.9573333333333334,
+    "f1-score": 0.9571395190932814,
     "support": 750.0
   },
   "weighted avg": {
-    "precision": 0.9640101799598952,
-    "recall": 0.9626666666666667,
-    "f1-score": 0.9626591396139629,
+    "precision": 0.9583641494979583,
+    "recall": 0.9573333333333334,
+    "f1-score": 0.9571395190932814,
     "support": 750.0
   }
 }
