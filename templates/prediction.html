@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results — MediAssist</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="{{ url_for('index') }}">
+        <span class="brand-mark">+</span>
+        <span>
+          <strong>MediAssist</strong>
+          <small>AI Healthcare Diagnosis Assistant</small>
+        </span>
+      </a>
+      <nav>
+        <a href="{{ url_for('index') }}">Check symptoms</a>
+        <a href="{{ url_for('history') }}">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="disclaimer-bar">
+    Educational tool — results are likely conditions, <em>not</em> a medical diagnosis.
+    Always consult a qualified healthcare professional.
+  </div>
+
+  <main class="wrap">
+
+
+<section class="intro">
+  <h1>Results for {{ r.patient.name }}</h1>
+  <p>{{ now }} · Report #{{ record_id }} ·
+     {{ r.patient.age }} yrs, {{ r.patient.gender }}
+     {% if r.risk.bmi %} · BMI {{ r.risk.bmi }}{% endif %}</p>
+</section>
+
+{% if r.emergencies %}
+<div class="alert alert-emergency">
+  <strong>⚠ Possible emergency detected</strong>
+  <ul>{% for e in r.emergencies %}<li>{{ e }}</li>{% endfor %}</ul>
+  <p>Please seek immediate medical care or contact emergency services.</p>
+</div>
+{% endif %}
+
+{% if r.warnings %}
+<div class="alert alert-warn">
+  {% for w in r.warnings %}<div>{{ w }}</div>{% endfor %}
+</div>
+{% endif %}
+
+<div class="results-layout">
+
+  <!-- Risk panel -->
+  <aside class="card risk-panel risk-{{ r.risk.level|lower }}">
+    <h2 class="section-label">Risk level</h2>
+    <div class="risk-value">{{ r.risk.level }}</div>
+    <div class="risk-gauge">
+      <div class="risk-fill" style="width: {{ [r.risk.score, 100]|min }}%"></div>
+    </div>
+    <div class="risk-score">Score: {{ r.risk.score }}</div>
+    {% if r.risk.factors %}
+    <ul class="risk-factors">
+      {% for f in r.risk.factors %}<li>{{ f }}</li>{% endfor %}
+    </ul>
+    {% else %}
+    <p class="muted">No elevated risk factors identified.</p>
+    {% endif %}
+  </aside>
+
+  <!-- Predictions -->
+  <section class="predictions">
+    <h2 class="section-label">Most likely conditions</h2>
+    {% for p in r.predictions %}
+    <article class="card condition {% if loop.first %}condition-top{% endif %}">
+      <header class="condition-head">
+        <h3>{{ p.disease }}</h3>
+        <span class="prob">{{ p.probability }}%</span>
+      </header>
+      <div class="prob-bar"><div style="width: {{ p.probability }}%"></div></div>
+      <dl class="condition-meta">
+        <div><dt>Specialist</dt><dd>{{ p.specialist }}</dd></div>
+        <div><dt>Medicine (informational)</dt><dd>{{ p.medicine }}</dd></div>
+      </dl>
+      {% if p.precautions %}
+      <details {% if loop.first %}open{% endif %}>
+        <summary>Precautions</summary>
+        <ul>{% for pr in p.precautions %}<li>{{ pr }}</li>{% endfor %}</ul>
+      </details>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </section>
+</div>
+
+<div class="actions">
+  <a class="btn-primary" href="{{ url_for('report', record_id=record_id) }}">Download report</a>
+  <a class="btn-secondary" href="{{ url_for('index') }}">New check</a>
+  <a class="btn-secondary" href="{{ url_for('history') }}">View history</a>
+</div>
+
+<p class="fine-print">{{ r.disclaimer }} Medicine names are shown as general
+information only — never take medication without professional advice.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      MediAssist · Machine-learning demo project · Not for clinical use ·
+      In an emergency, contact local emergency services immediately.
+    </div>
+  </footer>
+</body>
+</html>
